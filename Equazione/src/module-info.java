@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author serpe
- *
- */
-module Equazione {
-}

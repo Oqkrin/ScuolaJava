@@ -41,6 +41,7 @@ public class numeroComplesso{
 			float parteReale = ax.getParteReale() + by.getParteReale();
 			float parteImmaginaria = ax.getParteImmaginaria() + by.getParteImmaginaria();
 			return new numeroComplesso(parteReale, parteImmaginaria);
+			
 		}
 		
 		//differenza = a-b + i(x-y)

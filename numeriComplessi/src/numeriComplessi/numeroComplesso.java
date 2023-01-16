@@ -61,8 +61,7 @@ public class numeroComplesso{
 		//quoziente = (a + ix / b + iy) * (coniugato del divisore/coniugato del divisore) cioè (b - ix/b - ix) 
 		//il dividendo è un normale prodotto tra numeri complessi
 		//il divisore è la somma per differenza del numero complesso quindi b^2 - y^2 * (i^2 che è uguale a -1)
-		//verificare che il denominatore sia diverso da zero
-		//[(a*b+x*y)/(b^2+y^2)]+[i*(b*x-a*y)/(b^2+y^2)]
+		//verificare che il denominatore sia diverso da zeri 
 		public static numeroComplesso quozienteComplesso(numeroComplesso ax,numeroComplesso by) {
 			numeroComplesso dividendo = OpNC.prodottoComplesso(ax,OpNC.getConiugato(by));
 			numeroComplesso divisore = SommaPerDifferenza(by);
@@ -70,7 +69,7 @@ public class numeroComplesso{
 		}
 		
 		public static numeroComplesso SommaPerDifferenza(numeroComplesso by) {
-			return new numeroComplesso( ((by.getParteReale() * OpNC.getConiugato(by).getParteReale()) - (by.getParteImmaginaria() * OpNC.getConiugato(by).getParteImmaginaria()) * -1) ,0);
+			return new numeroComplesso( ((by.getParteReale() * OpNC.getConiugato(by).getParteReale()) - (OpNC.getConiugato(by).getParteImmaginaria() * OpNC.getConiugato(by).getParteImmaginaria()) * -1) ,0);
 		}
 		
 		public static numeroComplesso getConiugato(numeroComplesso n) {

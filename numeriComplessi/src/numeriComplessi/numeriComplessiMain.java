@@ -4,7 +4,9 @@ import numeriComplessi.numeroComplesso.*;
 public class numeriComplessiMain {
 
 	public static void main(String[] args) {
-		System.out.println(OperazioniNumeriComplessi.prodottoComplesso(new numeroComplesso(2f, -3f), new numeroComplesso(-6f, 1f)).getNumeroComplesso());
+		numeroComplesso ax = new numeroComplesso(3f, -2f);
+		numeroComplesso by = new numeroComplesso(2f, -3f);
+		System.out.println(OperazioniNumeriComplessi.quozienteComplesso(ax,by).getNumeroComplesso());
 	}
 
 }
@@ -21,11 +23,11 @@ class numeroComplesso{
 	}
 	
 	public float getParteReale() {
-		return parteReale;
+		return parteReale/getDivisore();
 	}
 
 	public void setParteReale(float parteReale) {
-		this.parteReale = parteReale/getDivisore();
+		this.parteReale = parteReale;
 	}
 
 	public float getParteImmaginaria() {
@@ -37,7 +39,7 @@ class numeroComplesso{
 	}	
 	
 	public String getNumeroComplesso() {
-		return  parteReale + (èDivisa ? "/" + getDivisore() : "") + " + i" + parteImmaginaria + (èDivisa ? "/" + getDivisore() : "");
+		return  parteReale + (èDivisa ? "/" + getDivisore() : "") + " + i(" + parteImmaginaria + (èDivisa ? "/" + getDivisore() : "") + ")";
 	}
 	
 	public float getDivisore() {
@@ -88,18 +90,17 @@ class numeroComplesso{
 				System.err.print("Divisore pari a zero");
 				divisore = new numeroComplesso(1f,0f);
 			}
-			numeroComplesso quoziente = new numeroComplesso(dividendo.getParteReale()/divisore.getParteReale() , dividendo.getParteImmaginaria()/divisore.getParteReale());
-			quoziente.èDivisa = true;
-			quoziente.setDivisore(divisore.getParteReale());
-			return quoziente;
+			dividendo.èDivisa = true;
+			dividendo.setDivisore(divisore.getParteReale());
+			return dividendo;
 		}
 		
 		public static numeroComplesso SommaPerDifferenza(numeroComplesso by) {
 			return new numeroComplesso( ((by.getParteReale() * OperazioniNumeriComplessi.getConiugato(by).getParteReale()) - (OperazioniNumeriComplessi.getConiugato(by).getParteImmaginaria() * OperazioniNumeriComplessi.getConiugato(by).getParteImmaginaria()) * -1) ,0);
 		}
 		
-		public static numeroComplesso getConiugato(numeroComplesso n) {
-			return new numeroComplesso(n.getParteReale(),-n.getParteImmaginaria());
+		public static numeroComplesso getConiugato(numeroComplesso nc) {
+			return new numeroComplesso(nc.getParteReale(),-1 * nc.getParteImmaginaria());
 		}
 	}
 	
